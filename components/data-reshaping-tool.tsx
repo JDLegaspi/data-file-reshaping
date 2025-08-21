@@ -309,87 +309,102 @@ export function DataReshapingTool() {
         </div>
       )}
 
-      <div className="w-80 bg-sidebar border-r border-sidebar-border p-6">
-        <div className="mb-8">
-          <h1 className="text-2xl font-serif font-bold text-sidebar-foreground mb-2">DataReshape</h1>
-          <p className="text-sm text-sidebar-foreground/70">Intelligent Data Transformation</p>
+      <div className="w-72 bg-sidebar border-r border-sidebar-border flex flex-col">
+        <div className="p-4 border-b border-sidebar-border">
+          <h1 className="text-lg font-sans font-semibold text-sidebar-foreground">DataReshape</h1>
+          <p className="text-xs text-sidebar-foreground/60 mt-0.5">Intelligent Data Transformation</p>
         </div>
 
-        <div className="space-y-6">
+        <div className="flex-1 p-3 space-y-4 overflow-y-auto">
           <div>
-            <h3 className="text-sm font-medium text-sidebar-foreground mb-3">Data Sources</h3>
-            <div className="space-y-2">
-              <Button variant="outline" className="w-full justify-start bg-transparent" size="sm">
-                <Upload className="w-4 h-4 mr-2" />
+            <h3 className="text-xs font-medium text-sidebar-foreground/70 mb-2 uppercase tracking-wider px-2">
+              Data Sources
+            </h3>
+            <div className="space-y-0.5">
+              <Button
+                variant="ghost"
+                className="w-full justify-start text-xs h-7 px-2 hover:bg-sidebar-accent/50 text-sidebar-foreground/80"
+                size="sm"
+              >
+                <Upload className="w-3.5 h-3.5 mr-2" />
                 Upload Files
               </Button>
-              <Button variant="outline" className="w-full justify-start bg-transparent" size="sm">
-                <Globe className="w-4 h-4 mr-2" />
+              <Button
+                variant="ghost"
+                className="w-full justify-start text-xs h-7 px-2 hover:bg-sidebar-accent/50 text-sidebar-foreground/80"
+                size="sm"
+              >
+                <Globe className="w-3.5 h-3.5 mr-2" />
                 From URL
               </Button>
             </div>
           </div>
 
           <div>
-            <h3 className="text-sm font-medium text-sidebar-foreground mb-3">Operations</h3>
-            <div className="space-y-2">
+            <h3 className="text-xs font-medium text-sidebar-foreground/70 mb-2 uppercase tracking-wider px-2">
+              Operations
+            </h3>
+            <div className="space-y-0.5">
               <Button
                 variant="ghost"
-                className="w-full justify-start"
+                className="w-full justify-start text-xs h-7 px-2 hover:bg-sidebar-accent/50 text-sidebar-foreground/80 disabled:opacity-50"
                 size="sm"
                 onClick={() => setActiveOperation("merge")}
                 disabled={uploadedFiles.filter((f) => f.status === "ready").length < 2}
               >
-                <Merge className="w-4 h-4 mr-2" />
+                <Merge className="w-3.5 h-3.5 mr-2" />
                 Merge/Join
               </Button>
               <Button
                 variant="ghost"
-                className="w-full justify-start"
+                className="w-full justify-start text-xs h-7 px-2 hover:bg-sidebar-accent/50 text-sidebar-foreground/80 disabled:opacity-50"
                 size="sm"
                 onClick={() => setActiveOperation("aggregate")}
                 disabled={uploadedFiles.filter((f) => f.status === "ready").length === 0}
               >
-                <BarChart3 className="w-4 h-4 mr-2" />
+                <BarChart3 className="w-3.5 h-3.5 mr-2" />
                 Aggregate
               </Button>
               <Button
                 variant="ghost"
-                className="w-full justify-start"
+                className="w-full justify-start text-xs h-7 px-2 hover:bg-sidebar-accent/50 text-sidebar-foreground/80 disabled:opacity-50"
                 size="sm"
                 onClick={() => setActiveOperation("reshape")}
                 disabled={uploadedFiles.filter((f) => f.status === "ready").length === 0}
               >
-                <ArrowUpDown className="w-4 h-4 mr-2" />
+                <ArrowUpDown className="w-3.5 h-3.5 mr-2" />
                 Reshape
               </Button>
             </div>
           </div>
 
           <div>
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm font-medium text-sidebar-foreground">Workflows</h3>
-              <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
+            <div className="flex items-center justify-between mb-2 px-2">
+              <h3 className="text-xs font-medium text-sidebar-foreground/70 uppercase tracking-wider">Workflows</h3>
+              <Button variant="ghost" size="sm" className="h-4 w-4 p-0 hover:bg-sidebar-accent/50">
                 <Plus className="w-3 h-3" />
               </Button>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-0.5">
               {savedWorkflows.length > 0 ? (
-                <div className="space-y-1">
+                <div className="space-y-0.5">
                   {savedWorkflows.slice(0, 3).map((workflow) => (
-                    <div key={workflow.id} className="text-sm text-sidebar-foreground/80 truncate">
+                    <div
+                      key={workflow.id}
+                      className="text-xs text-sidebar-foreground/70 truncate py-1 px-2 rounded hover:bg-sidebar-accent/30 transition-colors cursor-pointer"
+                    >
                       <WorkflowIcon className="w-3 h-3 inline mr-2" />
                       {workflow.name}
                     </div>
                   ))}
                   {savedWorkflows.length > 3 && (
-                    <div className="text-xs text-sidebar-foreground/60">
+                    <div className="text-xs text-sidebar-foreground/50 px-2 py-1">
                       +{savedWorkflows.length - 3} more workflows
                     </div>
                   )}
                 </div>
               ) : (
-                <div className="text-sm text-sidebar-foreground/60">No saved workflows</div>
+                <div className="text-xs text-sidebar-foreground/50 px-2 py-1">No saved workflows</div>
               )}
             </div>
           </div>
@@ -397,21 +412,21 @@ export function DataReshapingTool() {
       </div>
 
       <div className="flex-1 flex flex-col">
-        <div className="border-b border-border p-6">
+        <div className="border-b border-border px-4 py-3 bg-card/20">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               {activeOperation && (
-                <Button variant="ghost" size="sm" onClick={() => setActiveOperation(null)}>
+                <Button variant="ghost" size="sm" onClick={() => setActiveOperation(null)} className="h-7 w-7 p-0">
                   <ArrowLeft className="w-4 h-4" />
                 </Button>
               )}
               <div>
-                <h2 className="text-xl font-serif font-semibold text-foreground">
+                <h2 className="text-base font-sans font-medium text-foreground">
                   {activeOperation
                     ? `${activeOperation.charAt(0).toUpperCase() + activeOperation.slice(1)} Operation`
                     : "New Transformation"}
                 </h2>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="text-xs text-muted-foreground">
                   {activeOperation
                     ? "Configure your data transformation"
                     : allFiles.length > 0
@@ -420,19 +435,26 @@ export function DataReshapingTool() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <Badge variant={allFiles.length > 0 ? "default" : "secondary"} className="text-xs">
+            <div className="flex items-center gap-2">
+              <Badge
+                variant={allFiles.length > 0 ? "default" : "secondary"}
+                className="text-xs px-2 py-0.5 bg-primary/10 text-primary border-primary/20"
+              >
                 {allFiles.length > 0 ? "Files Loaded" : "Ready"}
               </Badge>
-              <Button variant="outline" size="sm">
-                <Settings className="w-4 h-4 mr-2" />
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-xs h-7 border-border/50 hover:bg-accent/50 bg-transparent"
+              >
+                <Settings className="w-3 h-3 mr-1" />
                 Settings
               </Button>
             </div>
           </div>
         </div>
 
-        <div className="flex-1 p-6">
+        <div className="flex-1 p-4">
           {activeOperation ? (
             <div className="h-full">
               {activeOperation === "merge" && (
@@ -459,43 +481,73 @@ export function DataReshapingTool() {
             </div>
           ) : (
             <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full">
-              <TabsList className="grid w-full grid-cols-6 max-w-2xl">
-                <TabsTrigger value="workspace">Workspace</TabsTrigger>
-                <TabsTrigger value="workflows">Workflows</TabsTrigger>
-                <TabsTrigger value="preview">Preview</TabsTrigger>
-                <TabsTrigger value="validation">Validation</TabsTrigger>
-                <TabsTrigger value="export">Export</TabsTrigger>
-                <TabsTrigger value="results">Results</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-6 max-w-2xl h-8 bg-muted/30">
+                <TabsTrigger
+                  value="workspace"
+                  className="text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                >
+                  Workspace
+                </TabsTrigger>
+                <TabsTrigger
+                  value="workflows"
+                  className="text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                >
+                  Workflows
+                </TabsTrigger>
+                <TabsTrigger
+                  value="preview"
+                  className="text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                >
+                  Preview
+                </TabsTrigger>
+                <TabsTrigger
+                  value="validation"
+                  className="text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                >
+                  Validation
+                </TabsTrigger>
+                <TabsTrigger
+                  value="export"
+                  className="text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                >
+                  Export
+                </TabsTrigger>
+                <TabsTrigger
+                  value="results"
+                  className="text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                >
+                  Results
+                </TabsTrigger>
               </TabsList>
 
-              <TabsContent value="workspace" className="mt-6 h-full">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
-                  <div className="space-y-6">
+              <TabsContent value="workspace" className="mt-4 h-full">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-full">
+                  <div className="space-y-4">
                     <FileUpload onFilesChange={handleFilesChange} />
                     <UrlDataSource onFileLoaded={handleUrlFileLoaded} />
                   </div>
 
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-lg font-serif">Available Operations</CardTitle>
-                      <CardDescription>
+                  <Card className="border-border/30 shadow-sm">
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-sm font-sans font-medium">Available Operations</CardTitle>
+                      <CardDescription className="text-xs">
                         {uploadedFiles.length > 0
                           ? "Select operations to apply to your data"
                           : "Upload files to enable operations"}
                       </CardDescription>
                     </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div className="grid grid-cols-1 gap-3">
+                    <CardContent className="space-y-2">
+                      <div className="grid grid-cols-1 gap-2">
                         <Button
                           variant="outline"
-                          className="justify-start h-auto p-4 bg-transparent"
+                          className="justify-start h-auto p-3 border-border/30 hover:bg-accent/30 hover:border-primary/30 bg-transparent"
                           disabled={uploadedFiles.filter((f) => f.status === "ready").length < 2}
                           onClick={() => setActiveOperation("merge")}
                         >
                           <div className="flex items-start gap-3">
-                            <Merge className="w-5 h-5 text-primary mt-0.5" />
+                            <Merge className="w-4 h-4 text-primary mt-0.5" />
                             <div className="text-left">
-                              <div className="font-medium">Merge & Join</div>
+                              <div className="font-medium text-sm">Merge & Join</div>
                               <div className="text-xs text-muted-foreground">Combine datasets by rows or columns</div>
                             </div>
                           </div>
@@ -503,14 +555,14 @@ export function DataReshapingTool() {
 
                         <Button
                           variant="outline"
-                          className="justify-start h-auto p-4 bg-transparent"
+                          className="justify-start h-auto p-3 border-border/30 hover:bg-accent/30 hover:border-primary/30 bg-transparent"
                           disabled={uploadedFiles.filter((f) => f.status === "ready").length === 0}
                           onClick={() => setActiveOperation("aggregate")}
                         >
                           <div className="flex items-start gap-3">
-                            <BarChart3 className="w-5 h-5 text-primary mt-0.5" />
+                            <BarChart3 className="w-4 h-4 text-primary mt-0.5" />
                             <div className="text-left">
-                              <div className="font-medium">Aggregate</div>
+                              <div className="font-medium text-sm">Aggregate</div>
                               <div className="text-xs text-muted-foreground">Group and summarize data points</div>
                             </div>
                           </div>
@@ -518,14 +570,14 @@ export function DataReshapingTool() {
 
                         <Button
                           variant="outline"
-                          className="justify-start h-auto p-4 bg-transparent"
+                          className="justify-start h-auto p-3 border-border/30 hover:bg-accent/30 hover:border-primary/30 bg-transparent"
                           disabled={uploadedFiles.filter((f) => f.status === "ready").length === 0}
                           onClick={() => setActiveOperation("reshape")}
                         >
                           <div className="flex items-start gap-3">
-                            <ArrowUpDown className="w-5 h-5 text-primary mt-0.5" />
+                            <ArrowUpDown className="w-4 h-4 text-primary mt-0.5" />
                             <div className="text-left">
-                              <div className="font-medium">Reshape</div>
+                              <div className="font-medium text-sm">Reshape</div>
                               <div className="text-xs text-muted-foreground">
                                 Transform between wide and long formats
                               </div>
@@ -538,11 +590,11 @@ export function DataReshapingTool() {
                 </div>
               </TabsContent>
 
-              <TabsContent value="workflows" className="mt-6 h-full">
+              <TabsContent value="workflows" className="mt-4 h-full">
                 <WorkflowBuilder files={allFiles} onWorkflowExecute={handleWorkflowExecute} />
               </TabsContent>
 
-              <TabsContent value="preview" className="mt-6 h-full">
+              <TabsContent value="preview" className="mt-4 h-full">
                 <DataPreview
                   files={allFiles}
                   selectedFileId={selectedPreviewFile}
@@ -550,19 +602,19 @@ export function DataReshapingTool() {
                 />
               </TabsContent>
 
-              <TabsContent value="validation" className="mt-6 h-full">
+              <TabsContent value="validation" className="mt-4 h-full">
                 <DataValidation files={allFiles} />
               </TabsContent>
 
-              <TabsContent value="export" className="mt-6 h-full">
+              <TabsContent value="export" className="mt-4 h-full">
                 <DataExport files={allFiles} />
               </TabsContent>
 
-              <TabsContent value="results" className="mt-6">
-                <Card className="h-full">
-                  <CardHeader>
-                    <CardTitle className="font-serif">Transformation Results</CardTitle>
-                    <CardDescription>
+              <TabsContent value="results" className="mt-4">
+                <Card className="h-full border-border/30 shadow-sm">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="font-sans text-sm font-medium">Transformation Results</CardTitle>
+                    <CardDescription className="text-xs">
                       {results.length > 0
                         ? `${results.length} result${results.length !== 1 ? "s" : ""} generated`
                         : "View and download your transformed data"}
@@ -570,31 +622,50 @@ export function DataReshapingTool() {
                   </CardHeader>
                   <CardContent>
                     {results.length > 0 ? (
-                      <div className="space-y-4">
+                      <div className="space-y-3">
                         {results.map((result) => (
-                          <div key={result.id} className="border border-border rounded-lg p-4">
-                            <div className="flex items-center justify-between mb-3">
-                              <h4 className="font-medium">{result.name}</h4>
-                              <Badge variant="outline">
+                          <div
+                            key={result.id}
+                            className="border border-border/30 rounded-md p-3 hover:bg-accent/20 transition-colors"
+                          >
+                            <div className="flex items-center justify-between mb-2">
+                              <h4 className="font-medium text-sm">{result.name}</h4>
+                              <Badge variant="outline" className="text-xs border-border/50">
                                 {result.rows?.toLocaleString()} rows × {result.columns?.length} columns
                               </Badge>
                             </div>
-                            <div className="flex items-center gap-3">
-                              <Button variant="outline" size="sm" onClick={() => handleDownload(result, "csv")}>
-                                <Download className="w-4 h-4 mr-2" />
+                            <div className="flex items-center gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-6 border-border/30 hover:bg-accent/30 bg-transparent"
+                                onClick={() => handleDownload(result, "csv")}
+                              >
+                                <Download className="w-3 h-3 mr-1" />
                                 CSV
                               </Button>
-                              <Button variant="outline" size="sm" onClick={() => handleDownload(result, "excel")}>
-                                <Download className="w-4 h-4 mr-2" />
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-6 border-border/30 hover:bg-accent/30 bg-transparent"
+                                onClick={() => handleDownload(result, "excel")}
+                              >
+                                <Download className="w-3 h-3 mr-1" />
                                 Excel
                               </Button>
-                              <Button variant="outline" size="sm" onClick={() => handleDownload(result, "json")}>
-                                <Download className="w-4 h-4 mr-2" />
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="text-xs h-6 border-border/30 hover:bg-accent/30 bg-transparent"
+                                onClick={() => handleDownload(result, "json")}
+                              >
+                                <Download className="w-3 h-3 mr-1" />
                                 JSON
                               </Button>
                               <Button
                                 variant="ghost"
                                 size="sm"
+                                className="text-xs h-6 hover:bg-accent/30"
                                 onClick={() => {
                                   setSelectedPreviewFile(result.id)
                                   setActiveTab("preview")
@@ -610,8 +681,8 @@ export function DataReshapingTool() {
                       <div className="flex items-center justify-center h-64 text-muted-foreground">
                         <div className="text-center">
                           <FileText className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                          <p>No results yet</p>
-                          <p className="text-sm">Complete transformations to see results</p>
+                          <p className="text-sm">No results yet</p>
+                          <p className="text-xs">Complete transformations to see results</p>
                         </div>
                       </div>
                     )}

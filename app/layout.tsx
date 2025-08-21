@@ -1,20 +1,20 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Space_Grotesk, DM_Sans } from "next/font/google"
+import { Open_Sans, Inter } from "next/font/google"
 import "./globals.css"
 
-const spaceGrotesk = Space_Grotesk({
+const openSans = Open_Sans({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-space-grotesk",
-  weight: ["400", "600", "700"],
+  variable: "--font-open-sans",
+  weight: ["400", "500", "600", "700"],
 })
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-dm-sans",
-  weight: ["400", "500"],
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
 })
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${dmSans.variable} antialiased`}>
+    <html lang="en" className={`${openSans.variable} ${inter.variable} antialiased`}>
       <body className="font-sans">{children}</body>
     </html>
   )
